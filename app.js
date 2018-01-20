@@ -1,4 +1,6 @@
+//require express in our app
 var express = require('express');
+// generate a new express app and call it 'app'
 var app = express();
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -7,7 +9,49 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-//scottie
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+/************
+ * DATABASE *
+ ************/
+
+//require models TC
+var db = require('./models');
+
+/**********
+ * ROUTES *
+ **********/
+var index = require('./routes/index');
+var user = require('./routes/users');
+var art = require('./routes/arts');
+var login = require('./routes/login');
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+
+app.use('/', index);
+app.use('/user', user);
+app.use('/art', art);
+app.use('/login', login);
+
+
+
+// $('#artButton').on('click'(function() {
+//   console.log('hi');
+// }));
+
+/**********
+ * Oauth *
+ **********/
 const passport = require('passport');
 const expressSession = require('express-session');
 const User = require('./models/user');
@@ -19,35 +63,21 @@ app.use(passport.session());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 mongoose.connect('mongodb://localhost:27017/austin-art');
 
-// routes
-var index = require('./routes/index');
-var user = require('./routes/users');
-var art = require('./routes/arts');
-var login = require('./routes/login');
 
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', index);
-app.use('/user', user);
-app.use('/art', art);
-app.use('/login', login);
-
-//scottie
 const googleClientKey = ENV.GOOGLE_CLIENT_ID;
 const googleClientSecret = ENV.GOOGLE_CLIENT_SECRET;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+// Finish setting up the Sessions
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+//session
 passport.use(new GoogleStrategy({
     clientID: googleClientKey,
     clientSecret: googleClientSecret,
@@ -80,35 +110,27 @@ passport.use(new GoogleStrategy({
     }
 ));
 
-// Finish setting up the Sessions
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
 
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
 
-// -> Google
+// request gooogle
 app.get('/auth/google', passport.authenticate('google', { scope: "email" }));
 
-// <- Google
+// google callback route
 app.get('/auth/google/callback',
   passport.authenticate('google', { successRedirect: '/', failureRedirect: '/' }));
 
-// Logout
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect("/")
-})
-
-// Home page
-app.get('/', function(req, res){
-  console.log(req.user);
-  res.render('index', {user: req.user});
-  // res.send('hello world')
+// Logout route
+app.get('/logout', function(req, res) {
+    req.session.destroy(function(e){
+        req.logout();
+        res.redirect('/');
+    });
 });
 
+
+/**********
+ * SERVER *
+ **********/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
