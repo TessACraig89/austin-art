@@ -1,6 +1,4 @@
-//require express in our app
 var express = require('express');
-// generate a new express app and call it 'app'
 var app = express();
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -11,12 +9,16 @@ var mongoose = require('mongoose');
 
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 /************
  * DATABASE *
@@ -24,28 +26,82 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //require models TC
 var db = require('./models');
-
+console.log(db);
 /**********
  * ROUTES *
  **********/
+ /*
+  * HTML Endpoints
+  */
 var index = require('./routes/index');
 var userProfile = require('./routes/userProfile');
 var art = require('./routes/arts');
 var login = require('./routes/login');
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-
+// show about page
 app.use('/', index);
+// show user profile
 app.use('/userProfile', userProfile);
+// show art page
 app.use('/art', art);
+// show login page
 app.use('/login', login);
 
+/*
+ * JSON API Endpoints
+ */
 
+// request /api endpoint from client using get, on success execute api_index function
+   // that responds to client with json
+app.get('/api', function api_index (req, res){
+  res.json({
+    message: "Welcome to Austin Art!",
+    documentation_url: "https://github.com/TessACraig89/austin-art/api.md",
+    base_url: "",
+    endpoints: [
+      {method: "GET", path: "/api", description: "Describes available endpoints"}
+    ]
+  });
+});
 
+//create a new route for /api/favorites 1
+// request /api/favorites endpoint from client using get, on success execute favoritesUser function
+  // find and respond with all favorites in Favorite db
+    // since API route send JSON
+app.get('/api/favorites', function favoritesUser(req, res) {
+  console.log('hi');
+  // sanity check
+  res.json('favorites');
+  db.Favorite.find({}, function(err, favorites) {
+    res.json(favorites);
+  });
+});
 
+// request /api/favorites/:id endpoint from client using get, on success execute favoriteShow function
+  // log requested favorite's id
+  // find one favorite from Favorite db using favorite id from request, on success call function that
+    // respond with json of favorite
+app.get('/api/favorites/:id', function favoriteShow(req, res) {
+  console.log('requested favorite id=', req.params.id);
+  db.Favorite.findOne({_id: req.params.id}, function(err, favorite) {
+    res.json(favorite);
+  });
+});
+
+// send request to /api/albums/:id to , on success run deleteAlbum function S4S2 TC
+  // log deleting request id
+  // remove specific album fron album db using id
+    // if err log error
+    // else log removal of id successful
+    // send 200 status code to say everything is a-OK
+// app.delete('/api/albums/:id', function deleteAlbum(req, res) {
+//   console.log('deleting id: ', req.params.id);
+//   db.Album.remove({_id: req.params.id}, function(err) {
+//     if (err) { return console.log(err); }
+//     console.log("removal of id=" + req.params.id  + " successful.");
+//     res.status(200).send();
+//   });
+// });
 /**********
  * Oauth *
  **********/
@@ -59,7 +115,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 mongoose.connect('mongodb://localhost:27017/austin-art');
-
 
 const googleClientKey = ENV.GOOGLE_CLIENT_ID;
 const googleClientSecret = ENV.GOOGLE_CLIENT_SECRET;
@@ -107,48 +162,20 @@ passport.use(new GoogleStrategy({
     }
 ));
 
-
-
-// request gooogle
+// redirect user to google.com
 app.get('/auth/google', passport.authenticate('google', { scope: "email" }));
 
-// google callback route
+// redirect user to either login page or user profile
 app.get('/auth/google/callback',
   passport.authenticate('google', { successRedirect: '/userProfile', failureRedirect: '/login' }));
 
-// Logout route
+// routes back to login page
 app.get('/logout', function(req, res) {
     req.session.destroy(function(e){
         req.logout();
         res.redirect('/login');
     });
 });
-
-
-
-/*
- * JSON API Endpoints
- */
-
-app.get('/api', function api_index (req, res){
-  res.json({
-    message: "Welcome to Austin Art!",
-    documentation_url: "https://github.com/TessACraig89/austin-art/api.md",
-    base_url: "",
-    endpoints: [
-      {method: "GET", path: "/api", description: "Describes available endpoints"}
-    ]
-  });
-});
-
-app.get('/api/art', function albumsIndex(req, res) {
-  console.log('hi');
-  res.json('hello');
-  // db.Art.find({}, function(err, art) {
-  //   res.json('hello');
-  // });
-});
-
 
 /**********
  * SERVER *

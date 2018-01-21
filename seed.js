@@ -1,26 +1,31 @@
-// This file allows us to seed our application with data
-// simply run: `node seed.js` from the root of this project folder.
-//require ./models
 var db = require("./models");
 
-//create emoty art list
-var artList = [];
+var favoriteList = [];
 
 //push art objects into array
-artList.push({
+favoriteList.push({
     title: 'Til Death',
     image: 'public/images/tillDeath.jpg',
-    address: 'fweffefef'
+    address: 'address1'
+});
+favoriteList.push({
+    title: 'title2',
+    image: 'image2',
+    address: 'address2'
+});
+favoriteList.push({
+    title: 'title3',
+    image: 'image3',
+    address: 'address3'
 });
 
+db.Favorite.remove({}, function(err, favorites){
 
-// db.Art.remove({}, function(err, arts){
-//
-//   db.Art.create(artList, function(err, arts){
-//     if (err) { return console.log('ERROR', err); }
-//     console.log("all arts:", art);
-//     console.log("created", art.length, "arts");
-//     process.exit();
-//   });
-//
-// });
+  db.Favorite.create(albumList, function(err, favorites){
+    if (err) { return console.log('ERROR', err); }
+    console.log("all favorites:", favorites);
+    console.log("created", favorites.length, "favorites");
+    process.exit();
+  });
+
+});
