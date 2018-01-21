@@ -144,6 +144,12 @@ app.get('/api', function api_index (req, res){
   });
 });
 
+app.get('/api/art', function albumsIndex(req, res) {
+  console.log('hi');
+  // db.Album.find({}, function(err, albums) {
+  //   res.json(albums);
+  // });
+});
 
 
 /**********
