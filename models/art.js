@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
   //keys used to define properties and their schema types
 var ArtSchema = new Schema({
   title: String,
-  image: String
+  image: String,
+  address: String
 });
 
 var Art = mongoose.model('Art', ArtSchema);

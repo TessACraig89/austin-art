@@ -10,7 +10,8 @@ var artList = [];
 //push art objects into array
 artList.push({
     title: 'Til Death',
-    image: 'public/images/tillDeath.jpg'
+    image: 'public/images/tillDeath.jpg',
+    address:
 });
 
 
