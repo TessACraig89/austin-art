@@ -1,6 +1,6 @@
 // require mongoose
 var mongoose = require("mongoose");
-// mongoose.connect("mongodb://localhost/tunely");
+mongoose.connect("mongodb://localhost/austin-art");
 
 //require art model
 var Art = require('./art');

@@ -7,9 +7,9 @@ mongoose.connect('mongodb://localhost:27017/austin-art')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { 
-  	user: req.user
-  });
+  res.render('index'
+  	// user: req.user
+);
 });
 
 module.exports = router;

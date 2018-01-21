@@ -114,20 +114,38 @@ app.get('/auth/google', passport.authenticate('google', { scope: "email" }));
 
 // google callback route
 app.get('/auth/google/callback',
-  passport.authenticate('google', { successRedirect: '/', failureRedirect: '/' }));
+  passport.authenticate('google', { successRedirect: '/user', failureRedirect: '/' }));
 
 // Logout route
 app.get('/logout', function(req, res) {
     req.session.destroy(function(e){
         req.logout();
-        res.redirect('/');
+        res.redirect('/login');
     });
 });
 
-
+//button
 // $('#artButton').on('click'(function() {
 //   res.redirect('/art');
 // }));
+
+/*
+ * JSON API Endpoints
+ */
+
+app.get('/api', function api_index (req, res){
+  res.json({
+    message: "Welcome to Austin Art!",
+    documentation_url: "https://github.com/TessACraig89/austin-art/api.md",
+    base_url: "",
+    endpoints: [
+      {method: "GET", path: "/api", description: "Describes available endpoints"}
+    ]
+  });
+});
+
+
+
 /**********
  * SERVER *
  **********/
