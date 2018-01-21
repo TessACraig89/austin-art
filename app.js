@@ -124,10 +124,7 @@ app.get('/logout', function(req, res) {
     });
 });
 
-//button
-// $('#artButton').on('click'(function() {
-//   res.redirect('/art');
-// }));
+
 
 /*
  * JSON API Endpoints
