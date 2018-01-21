@@ -29,7 +29,7 @@ var db = require('./models');
  * ROUTES *
  **********/
 var index = require('./routes/index');
-var user = require('./routes/users');
+var userProfile = require('./routes/userProfile');
 var art = require('./routes/arts');
 var login = require('./routes/login');
 
@@ -39,7 +39,7 @@ app.set('view engine', 'ejs');
 
 
 app.use('/', index);
-app.use('/user', user);
+app.use('/userProfile', userProfile);
 app.use('/art', art);
 app.use('/login', login);
 
@@ -114,7 +114,7 @@ app.get('/auth/google', passport.authenticate('google', { scope: "email" }));
 
 // google callback route
 app.get('/auth/google/callback',
-  passport.authenticate('google', { successRedirect: '/user', failureRedirect: '/' }));
+  passport.authenticate('google', { successRedirect: '/userProfile', failureRedirect: '/login' }));
 
 // Logout route
 app.get('/logout', function(req, res) {
