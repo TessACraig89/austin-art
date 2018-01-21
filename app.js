@@ -45,9 +45,6 @@ app.use('/login', login);
 
 
 
-// $('#artButton').on('click'(function() {
-//   console.log('hi');
-// }));
 
 /**********
  * Oauth *
@@ -127,7 +124,10 @@ app.get('/logout', function(req, res) {
     });
 });
 
-
+// 
+// $('#artButton').on('click'(function() {
+//   res.redirect('/art');
+// }));
 /**********
  * SERVER *
  **********/
