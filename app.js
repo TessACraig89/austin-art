@@ -114,7 +114,7 @@ app.get('/auth/google', passport.authenticate('google', { scope: "email" }));
 
 // google callback route
 app.get('/auth/google/callback',
-  passport.authenticate('google', { successRedirect: '/', failureRedirect: '/' }));
+  passport.authenticate('google', { successRedirect: '/user', failureRedirect: '/' }));
 
 // Logout route
 app.get('/logout', function(req, res) {
@@ -124,7 +124,7 @@ app.get('/logout', function(req, res) {
     });
 });
 
-// 
+//
 // $('#artButton').on('click'(function() {
 //   res.redirect('/art');
 // }));
