@@ -11,7 +11,7 @@ var artList = [];
 artList.push({
     title: 'Til Death',
     image: 'public/images/tillDeath.jpg',
-    address:
+    address: 'fweffefef'
 });
 
 
