@@ -4,11 +4,13 @@
 // on success render each favorite for all favorites
 $(document).ready(function() {
   console.log('frontend.js loaded!');
-  // $.get('/api/favorites').success(function (favorites) {
-  //   favorites.forEach(function(favorite) {
-  //     renderFavorite(favorite);
-  //   });
-  // });
+  $.get('/api/favorites').success(function (favorites) {
+    favorites.forEach(function(favorite) {
+      render(favorite);
+      console.log('hi');
+    });
+
+  });
 });
 
   //nav buttons
