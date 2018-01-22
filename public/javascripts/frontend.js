@@ -6,7 +6,7 @@ $(document).ready(function() {
   console.log('frontend.js loaded!');
   $.get('/api/favorites').success(function (favorites) {
     favorites.forEach(function(favorite) {
-      renderFavorite(favorite);
+      renderArtFavorite(favorite);
       console.log('hi');
     });
 
@@ -41,11 +41,16 @@ $('#aboutButton').click(function() {
     console.log('formData', formData);
     $.post('/api/favorites', formData, function(favorite) {
       console.log('favorite after POST', favorite);
-      renderFavorite(favorite);
+      renderUserFavorite(favorite);
     });
     $(this).trigger("reset");
   });
 
+
+$('#addDeath').on('click', handleAddDeathClick);
+
+function handleAddDeathClick(e) {
+}
 // DELETE
   // call handleDeleteFavoriteClick function when delete-favorite modal button is clicked
     $('#favorites').on('click', '.delete-favorite', handleDeleteFavoriteClick);
@@ -78,8 +83,8 @@ function getFavoriteRowById(id) {
 }
 
 // GENERATE HTML for a Favorite row
-  function generateFavoriteHtml(favorite) {
-    var favoriteHtml =
+  function generateUserFavoriteHtml(favorite) {
+    var favoriteUserHtml =
     "        <!-- one favorite -->" +
                 // each favorite has data-favorite-id attribute that's value is favorite._id
       "        <div class='row favorite' data-favorite-id='" + favorite._id + "'>" +
@@ -116,7 +121,43 @@ function getFavoriteRowById(id) {
 "            </div>" +
 "          </div>" +
 "          <!-- end one favorite -->";
-return favoriteHtml;
+return favoriteUserHtml;
+}
+
+// GENERATE HTML for a art page Favorite row
+  function generateArtFavoriteHtml(favorite) {
+    var favoriteArtHtml =
+    "        <!-- one favorite -->" +
+                // each favorite has data-favorite-id attribute that's value is favorite._id
+      "        <div class='row favorite' data-favorite-id='" + favorite._id + "'>" +
+      "          <div class='col-md-10 col-md-offset-1'>" +
+      "            <div class='panel panel-default'>" +
+      "              <div class='panel-body'>" +
+      "              <!-- begin favorite internal row -->" +
+      "                <div class='row'>" +
+      "                  <div class='col-md-3 col-xs-12 thumbnail favorite-art'>" +
+      "                     <img src='" + "http://placehold.it/400x400'" +  " alt='favorite image'>" +
+      "                  </div>" +
+      "                  <div class='col-md-9 col-xs-12'>" +
+      "                    <ul class='list-group'>" +
+      "                      <li class='list-group-item'>" +
+      "                        <h4 class='inline-header'>Title:</h4>" +
+      "                        <span class='favorite-title'>" + favorite.title + "</span>" +
+      "                      </li>" +
+      "                      <li class='list-group-item'>" +
+      "                        <h4 class='inline-header'>Address:</h4>" +
+      "                        <span class='address'>" + favorite.address + "</span>" +
+      "                      </li>" +
+    "</ul>" +
+"                  </div>" +
+"                </div>" +
+"                <!-- end of favorite internal row -->" +
+
+"              </div>" + // end of panel-body
+"            </div>" +
+"          </div>" +
+"          <!-- end one favorite -->";
+return favoriteArtHtml;
 }
 
 //SAVE AND EDIT BUTTONS
@@ -127,9 +168,19 @@ return favoriteHtml;
 // RENDER ONE favorite
 // this function takes a single favorite and renders it to the page
 // edit the function renderFavorite to display one Favorite on the page.
-function renderFavorite(favorite) {
-    var html = generateFavoriteHtml(favorite);
+function renderUserFavorite(favorite) {
+    var html = generateUserFavoriteHtml(favorite);
     console.log('rendering favorite:', favorite);
 
-    $('#favorites').prepend(html);
+    $('#userFavorites').prepend(html);
+}
+
+// RENDER ONE favorite
+// this function takes a single favorite and renders it to the page
+// edit the function renderFavorite to display one Favorite on the page.
+function renderArtFavorite(favorite) {
+    var html = generateArtFavoriteHtml(favorite);
+    console.log('rendering favorite:', favorite);
+
+    $('#artFavorites').prepend(html);
 }

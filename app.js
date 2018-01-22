@@ -103,6 +103,27 @@ app.get('/api/favorites/:id', function favoriteShow(req, res) {
   });
 });
 
+// send /api/favorites to client using post, on success execute favoritesCreate function S2S3 TC
+//log and object containing parsed text from /api/favorites body
+  // split the data in req.body.genres field at comma, map into new genres array, and remove trailing space using .trim S2S4
+  // set /api/favorites body data to genres array
+  //connect app.post route to favorite db S2S5
+    // create record in favorite database that has attributes of req.body
+      // logs error if err occurs
+      // logs new favorite if no eror
+      // respond with new favorite
+app.post('/api/favorites', function favoriteCreate(req, res) {
+  console.log('body', req.body);
+  var genres = req.body.genres.split(',').map(function(item) { return item.trim(); } );
+  req.body.genres = genres;
+  db.Favorite.create(req.body, function(err, favorite) {
+    if (err) { console.log('error', err); }
+    console.log(favorite);
+    res.json(favorite);
+  });
+});
+
+//DELETE FAVORITE
 // send request to /api/favorites/:id to , on success run deleteFavorite function S4S2 TC
   // log deleting request id
   // remove specific favorite fron favorite db using id
