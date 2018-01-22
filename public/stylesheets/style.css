@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Amaranth', sans-serif;
 }
 
 a {
@@ -10,4 +11,29 @@ a {
 img {
   width: 300px;
   height: 300px;
+}
+
+.jumbotron {
+  background-color: #5bbbd8;
+  text-align: center;
+  width: 100%;
+  border-radius: 20px;
+
+}
+
+.navButton {
+  border-radius: 50px;
+  font-size: 20px;
+}
+
+#headerTitle {
+  font-size: 70px;
+}
+
+#aboutButton {
+  position: 50%;
+}
+
+#artButton {
+  position: 30%;
 }
