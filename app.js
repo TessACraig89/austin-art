@@ -20,6 +20,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// const { Client } = require('pg');
+//
+// const client = new Client({
+//   connectionString: process.env.'https://fast-ocean-19609.herokuapp.com/',
+//   ssl: true,
+// });
+//
+// client.connect();
+//
+// client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+//   if (err) throw err;
+//   for (let row of res.rows) {
+//     console.log(JSON.stringify(row));
+//   }
+//   client.end();
+// });
 /************
  * DATABASE *
  ************/
