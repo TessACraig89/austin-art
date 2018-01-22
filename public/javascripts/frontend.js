@@ -85,11 +85,8 @@ $(document).ready(function() {
 "              </div>" + // end of panel-body
 
 "              <div class='panel-footer'>" +
-                // Add a new button in panel-footer to edit favorite S5S1 TC
-"                <button class='btn btn-info edit-favorite'>Edit Favorite</button>" +
                 // Add a new button in panel-footer to delete favorite S4S1 TC
 "                <button class='btn btn-danger delete-favorite'>Delete Favorite</button>" +
-"                <button class='btn btn-success put-favorite default-hidden'>Save Changes</button>" +
 "              </div>" +
 
 "            </div>" +
@@ -97,6 +94,11 @@ $(document).ready(function() {
 "          <!-- end one favorite -->";
 return favoriteHtml;
 }
+
+//SAVE AND EDIT BUTTONS
+// Add a new button in panel-footer to edit favorite S5S1 TC
+// "                <button class='btn btn-info edit-favorite'>Edit Favorite</button>" +
+// "                <button class='btn btn-success put-favorite default-hidden'>Save Changes</button>"
 
 // // this function takes a single favorite and renders it to the page
 //   //edit the function renderFavorite to display one Favorite on the page.
