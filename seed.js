@@ -21,7 +21,7 @@ favoriteList.push({
 
 db.Favorite.remove({}, function(err, favorites){
 
-  db.Favorite.create(albumList, function(err, favorites){
+  db.Favorite.create(favoriteList, function(err, favorites){
     if (err) { return console.log('ERROR', err); }
     console.log("all favorites:", favorites);
     console.log("created", favorites.length, "favorites");

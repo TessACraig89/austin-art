@@ -72,9 +72,9 @@ app.get('/api/favorites', function favoritesUser(req, res) {
   console.log('hi');
   // sanity check
   res.json('favorites');
-  db.Favorite.find({}, function(err, favorites) {
-    res.json(favorites);
-  });
+  // db.Favorite.find({}, function(err, favorites) {
+  //   res.json(favorites);
+  // });
 });
 
 // request /api/favorites/:id endpoint from client using get, on success execute favoriteShow function
@@ -169,7 +169,7 @@ app.get('/auth/google', passport.authenticate('google', { scope: "email" }));
 app.get('/auth/google/callback',
   passport.authenticate('google', { successRedirect: '/userProfile', failureRedirect: '/login' }));
 
-// routes back to login page
+// routes back to login page when logout
 app.get('/logout', function(req, res) {
     req.session.destroy(function(e){
         req.logout();
