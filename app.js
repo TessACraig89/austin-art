@@ -26,7 +26,7 @@ app.set('view engine', 'ejs');
 
 //require models TC
 var db = require('./models');
-console.log(db);
+
 /**********
  * ROUTES *
  **********/
