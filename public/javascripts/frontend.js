@@ -26,6 +26,7 @@ $('#aboutButton').click(function() {
   window.location.href = "/"
 });
 
+//UPDATE WHEN SUBMIT ADD FAVORITES
 // get favoriten-form by id attach a submit event to it
   //triggers function that prevents default, send content of the form to the server right away
   // serialize favorite form values and store in formData variable
@@ -40,7 +41,7 @@ $('#aboutButton').click(function() {
     console.log('formData', formData);
     $.post('/api/favorites', formData, function(favorite) {
       console.log('favorite after POST', favorite);
-      renderAlbum(favorite);
+      renderFavorite(favorite);
     });
     $(this).trigger("reset");
   });

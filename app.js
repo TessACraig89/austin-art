@@ -109,14 +109,14 @@ app.get('/api/favorites/:id', function favoriteShow(req, res) {
     // if err log error
     // else log removal of id successful
     // send 200 status code to say everything is a-OK
-// app.delete('/api/favorites/:id', function deleteFavorite(req, res) {
-//   console.log('deleting id: ', req.params.id);
-//   db.Favorite.remove({_id: req.params.id}, function(err) {
-//     if (err) { return console.log(err); }
-//     console.log("removal of id=" + req.params.id  + " successful.");
-//     res.status(200).send();
-//   });
-// });
+app.delete('/api/favorites/:id', function deleteFavorite(req, res) {
+  console.log('deleting id: ', req.params.id);
+  db.Favorite.remove({_id: req.params.id}, function(err) {
+    if (err) { return console.log(err); }
+    console.log("removal of id=" + req.params.id  + " successful.");
+    res.status(200).send();
+  });
+});
 /**********
  * Oauth *
  **********/
