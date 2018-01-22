@@ -35,22 +35,49 @@ $('#aboutButton').click(function() {
     // logs favorite after post
     //render new favorite
   // then reset
-  $('#favorite-form form').on('submit', function(e) {
-    e.preventDefault();
-    var formData = $(this).serialize();
-    console.log('formData', formData);
-    $.post('/api/favorites', formData, function(favorite) {
-      console.log('favorite after POST', favorite);
-      renderUserFavorite(favorite);
-    });
-    $(this).trigger("reset");
-  });
+  // $('#favorite-form form').on('submit', function(e) {
+  //   e.preventDefault();
+  //   var formData = $(this).serialize();
+  //   console.log('formData', formData);
+  //   $.post('/api/favorites', formData, function(favorite) {
+  //     console.log('favorite after POST', favorite);
+  //     renderUserFavorite(favorite);
+  //   });
+  //   $(this).trigger("reset");
+  // });
 
 
-$('#addDeath').on('click', handleAddDeathClick);
+$('.addDeath').on('click', handleAddDeathClick);
 
+
+// handleNewSongSubmit function S3S5 TC
+  // get song modal's album-id data and store in albumId variable
+  // get value from songName input field and store in songName variable
+  //get value from trackNumber input field and store in trackNumber variable
+  //formData object containing S3S5 TC
+    // songName input data
+    // trackNumber input data
 function handleAddDeathClick(e) {
-}
+  console.log('hello');
+  // var favoriteId = $(this).parents('.favorite').data('favorite-id');
+  console.log('someone wants to add favorite id=' + this.id );
+  // };
+  //   //use ajax $.post to send request to postUrl, send formData with request S3S5 TC
+  //     // if succesfull call function to
+  //       // log song
+  $.get('/api/user/favorites/' + this.id).success(function(favorite) {
+    console.log('got');
+//         //on success render a replacement
+    renderUserFavorite(favorite);
+
+    $.post('/api/user/favorites/' + this.id)
+      .success(function(favorite) {
+        console.log('favorite', favorite);
+  //       //use ajax $.get to request specific album by id from server
+  });
+      });
+  }
+
 // DELETE
   // call handleDeleteFavoriteClick function when delete-favorite modal button is clicked
     $('#favorites').on('click', '.delete-favorite', handleDeleteFavoriteClick);

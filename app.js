@@ -103,6 +103,20 @@ app.get('/api/favorites/:id', function favoriteShow(req, res) {
   });
 });
 
+app.get('/api/user/favorites/:id', function favoriteShow(req, res) {
+  console.log('requested favorite id=', req.params.id);
+  db.Favorite.findOne({_id: req.params.id}, function(err, favorite) {
+    res.json(favorite);
+  });
+
+app.post('/api/user/favorites/:id', function favoriteAdd(req, res) {
+  console.log('adding id: ', req.params.id);
+  db.Favorite.findOne({_id: req.params.id},
+  function(err, favorite) {
+      res.json(favorite);
+  });
+});
+});
 // send /api/favorites to client using post, on success execute favoritesCreate function S2S3 TC
 //log and object containing parsed text from /api/favorites body
   // split the data in req.body.genres field at comma, map into new genres array, and remove trailing space using .trim S2S4
