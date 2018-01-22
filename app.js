@@ -103,15 +103,15 @@ app.get('/api/favorites/:id', function favoriteShow(req, res) {
   });
 });
 
-// send request to /api/albums/:id to , on success run deleteAlbum function S4S2 TC
+// send request to /api/favorites/:id to , on success run deleteFavorite function S4S2 TC
   // log deleting request id
-  // remove specific album fron album db using id
+  // remove specific favorite fron favorite db using id
     // if err log error
     // else log removal of id successful
     // send 200 status code to say everything is a-OK
-// app.delete('/api/albums/:id', function deleteAlbum(req, res) {
+// app.delete('/api/favorites/:id', function deleteFavorite(req, res) {
 //   console.log('deleting id: ', req.params.id);
-//   db.Album.remove({_id: req.params.id}, function(err) {
+//   db.Favorite.remove({_id: req.params.id}, function(err) {
 //     if (err) { return console.log(err); }
 //     console.log("removal of id=" + req.params.id  + " successful.");
 //     res.status(200).send();

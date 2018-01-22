@@ -1,4 +1,4 @@
-// document ready 1
+//RENDER ALL FAVORITES
 //use ajax to get the favorites && Render them on the page
 //use ajax $.get to get all favorites from server
 // on success render each favorite for all favorites
@@ -13,7 +13,7 @@ $(document).ready(function() {
   });
 });
 
-  //nav buttons
+//NAVIGATION
   $('#artButton').click(function() {
     window.location.href = "/art"
   });
@@ -52,7 +52,12 @@ $(document).ready(function() {
     });
   }
 
-// generate just the html for an Favorite row
+// accepts an album id (mongo id) and return the row in which that album exists
+function getFavoriteRowById(id) {
+  return $('[data-favorite-id=' + id + ']');
+}
+
+// GENERATE HTML for a Favorite row
   function generateFavoriteHtml(favorite) {
     var favoriteHtml =
     "        <!-- one favorite -->" +
@@ -69,11 +74,11 @@ $(document).ready(function() {
       "                  <div class='col-md-9 col-xs-12'>" +
       "                    <ul class='list-group'>" +
       "                      <li class='list-group-item'>" +
-      "                        <h4 class='inline-header'>Favorite Title:</h4>" +
+      "                        <h4 class='inline-header'>Title:</h4>" +
       "                        <span class='favorite-title'>" + favorite.title + "</span>" +
       "                      </li>" +
       "                      <li class='list-group-item'>" +
-      "                        <h4 class='inline-header'>Favorite Address:</h4>" +
+      "                        <h4 class='inline-header'>Address:</h4>" +
       "                        <span class='address'>" + favorite.address + "</span>" +
       "                      </li>" +
     "</ul>" +
@@ -99,8 +104,9 @@ return favoriteHtml;
 // "                <button class='btn btn-info edit-favorite'>Edit Favorite</button>" +
 // "                <button class='btn btn-success put-favorite default-hidden'>Save Changes</button>"
 
-// // this function takes a single favorite and renders it to the page
-//   //edit the function renderFavorite to display one Favorite on the page.
+// RENDER ONE ALBUM
+// this function takes a single favorite and renders it to the page
+// edit the function renderFavorite to display one Favorite on the page.
 function renderFavorite(favorite) {
     var html = generateFavoriteHtml(favorite);
     console.log('rendering favorite:', favorite);
