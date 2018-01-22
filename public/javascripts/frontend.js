@@ -29,7 +29,7 @@ $(document).ready(function() {
 
 // DELETE
   // call handleDeleteFavoriteClick function when delete-favorite modal button is clicked
-    // $('#favorites').on('click', '.delete-favorite', handleDeleteFavoriteClick);
+    $('#favorites').on('click', '.delete-favorite', handleDeleteFavoriteClick);
 
   // handleDeleteFavoriteClick function
     // get current favorite's favorite-id data and store in favoriteId variable
@@ -40,18 +40,18 @@ $(document).ready(function() {
       // on success call function
         // log that favorite has been deleted
         // select favorite using using data-favorite-id and favoriteId and remove
-  // function handleDeleteFavoriteClick(e) {
-  //   var favoriteId = $(this).parents('.favorite').data('favorite-id');
-  //   console.log('someone wants to delete favorite id=' + favoriteId );
-  //   $.ajax({
-  //     method: 'DELETE',
-  //     url: ('/api/favorites/' + favoriteId),
-  //     success: function() {
-  //       console.log("He's dead Jim");
-  //       $('[data-favorite-id='+ favoriteId + ']').remove();
-  //     }
-  //   });
-  // }
+  function handleDeleteFavoriteClick(e) {
+    var favoriteId = $(this).parents('.favorite').data('favorite-id');
+    console.log('someone wants to delete favorite id=' + favoriteId );
+    $.ajax({
+      method: 'DELETE',
+      url: ('/api/favorites/' + favoriteId),
+      success: function() {
+        console.log("He's dead Jim");
+        $('[data-favorite-id='+ favoriteId + ']').remove();
+      }
+    });
+  }
 
 // generate just the html for an Favorite row
   function generateFavoriteHtml(favorite) {
@@ -77,8 +77,29 @@ $(document).ready(function() {
       "                        <h4 class='inline-header'>Favorite Address:</h4>" +
       "                        <span class='address'>" + favorite.address + "</span>" +
       "                      </li>" +
-      "<!-- end one album -->";
-        return favoriteHtml;
+    "</ul>" +
+"                  </div>" +
+"                </div>" +
+"                <!-- end of favorite internal row -->" +
+
+"              </div>" + // end of panel-body
+
+"              <div class='panel-footer'>" +
+                // Add a new button in panel-footer to add song S3S4 TC
+"                <button class='btn btn-primary add-song'>Add Song</button>" +
+                // Add a new button in panel-footer to edit favorite S5S1 TC
+"                <button class='btn btn-info edit-favorite'>Edit Favorite</button>" +
+                // Add a new button to each panel-footer S6S1 TC
+"                <button class='btn btn-info edit-songs'>Edit Songs</button>" +
+                // Add a new button in panel-footer to delete favorite S4S1 TC
+"                <button class='btn btn-danger delete-favorite'>Delete Favorite</button>" +
+"                <button class='btn btn-success put-favorite default-hidden'>Save Changes</button>" +
+"              </div>" +
+
+"            </div>" +
+"          </div>" +
+"          <!-- end one favorite -->";
+return favoriteHtml;
 }
 
 // // this function takes a single favorite and renders it to the page
