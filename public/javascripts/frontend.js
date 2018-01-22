@@ -5,6 +5,7 @@
 $(document).ready(function() {
   console.log('frontend.js loaded!');
   $.get('/api/favorites').success(function (favorites) {
+    console.log(favorites);
     favorites.forEach(function(favorite) {
       render(favorite);
       console.log('hi');
