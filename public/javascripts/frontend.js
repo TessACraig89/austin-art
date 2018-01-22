@@ -14,16 +14,35 @@ $(document).ready(function() {
 });
 
 //NAVIGATION
-  $('#artButton').click(function() {
-    window.location.href = "/art"
-  });
+$('#artButton').click(function() {
+  window.location.href = "/art"
+});
 
-  $('#loginButton').click(function() {
-    window.location.href = "/login"
-  });
+$('#loginButton').click(function() {
+  window.location.href = "/login"
+});
 
-  $('#aboutButton').click(function() {
-    window.location.href = "/"
+$('#aboutButton').click(function() {
+  window.location.href = "/"
+});
+
+// get favoriten-form by id attach a submit event to it
+  //triggers function that prevents default, send content of the form to the server right away
+  // serialize favorite form values and store in formData variable
+  //console.log form data
+  // use ajax $.post to send request to /api/favorites, send formData with request, if request succeeds triggers function that S2S4
+    // logs favorite after post
+    //render new favorite
+  // then reset
+  $('#favorite-form form').on('submit', function(e) {
+    e.preventDefault();
+    var formData = $(this).serialize();
+    console.log('formData', formData);
+    $.post('/api/favorites', formData, function(favorite) {
+      console.log('favorite after POST', favorite);
+      renderAlbum(favorite);
+    });
+    $(this).trigger("reset");
   });
 
 // DELETE
@@ -52,7 +71,7 @@ $(document).ready(function() {
     });
   }
 
-// accepts an album id (mongo id) and return the row in which that album exists
+// accepts an favorite id (mongo id) and return the row in which that favorite exists
 function getFavoriteRowById(id) {
   return $('[data-favorite-id=' + id + ']');
 }
@@ -104,7 +123,7 @@ return favoriteHtml;
 // "                <button class='btn btn-info edit-favorite'>Edit Favorite</button>" +
 // "                <button class='btn btn-success put-favorite default-hidden'>Save Changes</button>"
 
-// RENDER ONE ALBUM
+// RENDER ONE favorite
 // this function takes a single favorite and renders it to the page
 // edit the function renderFavorite to display one Favorite on the page.
 function renderFavorite(favorite) {
