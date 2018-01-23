@@ -1,11 +1,7 @@
 <% include ./partials/boilerplate %>
     <a href="/login">Logout</a>
     <h1 id='profileTitle'>Profile</h1>
-    <section id='username'>Username :</section>
-    <section id='email'>Email :</section>
-    <button id='editButton'>Edit</button>
     <h2 id='favoritesTitle'>Favorites</h2>
-    <!-- unfavorite button -->
     <!-- favorites list -->
     <section id='favorite-form' class="container">
          <div class="row">
@@ -26,7 +22,6 @@
 
                <!-- Button -->
                <div class="form-group">
-                 <label class="col-md-4 control-label" for="singlebutton">Save favorite</label>
                  <div class="col-md-4">
                    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
                  </div>
@@ -36,9 +31,6 @@
          </div>
          </div>
        </section>
-
     <div id='userFavorites'>
     </div>
-    <!-- <button class='btn btn-info edit-favorite'>Edit</button>
-    <button class='btn btn-success put-favorite default-hidden'>Save Changes</button> -->
 <% include ./partials/footer %>

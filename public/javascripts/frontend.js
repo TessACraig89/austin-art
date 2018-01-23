@@ -110,7 +110,7 @@ function getFavoriteRowById(id) {
   return $('[data-favorite-id=' + id + ']');
 }
 
-// GENERATE HTML for a Favorite row
+// GENERATE HTML for a user Favorite row
   function generateUserFavoriteHtml(favorite) {
     var favoriteUserHtml =
     "        <!-- one favorite -->" +
@@ -193,7 +193,7 @@ return favoriteArtHtml;
 // "                <button class='btn btn-info edit-favorite'>Edit Favorite</button>" +
 // "                <button class='btn btn-success put-favorite default-hidden'>Save Changes</button>"
 
-// RENDER ONE favorite
+// RENDER ONE user favorite
 // this function takes a single favorite and renders it to the page
 // edit the function renderFavorite to display one Favorite on the page.
 function renderUserFavorite(favorite) {
@@ -203,7 +203,7 @@ function renderUserFavorite(favorite) {
     $('#userFavorites').prepend(html);
 }
 
-// RENDER ONE favorite
+// RENDER ONE art favorite
 // this function takes a single favorite and renders it to the page
 // edit the function renderFavorite to display one Favorite on the page.
 function renderArtFavorite(favorite) {
