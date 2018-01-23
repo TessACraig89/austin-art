@@ -7,6 +7,7 @@ $(document).ready(function() {
   $.get('/api/favorites').success(function (favorites) {
     favorites.forEach(function(favorite) {
       renderArtFavorite(favorite);
+      renderUserFavorite(favorite);
       console.log('hi');
     });
 
@@ -80,7 +81,7 @@ function handleAddDeathClick(e) {
 
 // DELETE
   // call handleDeleteFavoriteClick function when delete-favorite modal button is clicked
-    $('#favorites').on('click', '.delete-favorite', handleDeleteFavoriteClick);
+    $('#userFavorites').on('click', '.delete-favorite', handleDeleteFavoriteClick);
 
   // handleDeleteFavoriteClick function
     // get current favorite's favorite-id data and store in favoriteId variable
