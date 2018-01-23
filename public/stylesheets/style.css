@@ -20,20 +20,22 @@ img {
   height: 200px;
   position: relative;
   bottom: 30px;
-  border-radius: 20px;
+  border: black solid 7px;
+  border-radius: 30px;
 
+}
+
+#headerTitle {
+  font-size: 80px;
+  position: relative;
+  bottom: 60px;
 }
 
 #headerSub {
   font-size: 30px;
   font-style: italic;
   position: relative;
-  bottom: 40px;
-}
-
-#aboutCollage {
-  width: 70%;
-  height: 400px;
+  bottom: 60px;
 }
 
 
@@ -41,7 +43,7 @@ img {
   display: flex;
   justify-content: space-evenly;
   position: relative;
-  top: 20px;
+  top: 5px;
 }
 
 .navButton {
@@ -58,9 +60,32 @@ img {
   background-color: #a289ed;
 }
 
-#headerTitle {
-  font-size: 80px;
+.aboutContainer {
+  display: flex;
+  flex-direction: row;
   position: relative;
-  bottom: 40px;
+  top: 80px;
+}
 
+.aboutCollage {
+  width: 60%;
+  height: 400px;
+  border: black 5px;
+  border-radius: 30px;
+}
+
+.aboutTextContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.aboutTitle {
+  font-size: 50px;
+
+}
+
+.aboutP {
+  font-size: 20px;
+  margin: 20px;
 }
