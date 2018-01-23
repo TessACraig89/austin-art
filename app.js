@@ -7,8 +7,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-
-// uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -16,39 +14,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// const { Client } = require('pg');
-//
-// const client = new Client({
-//   connectionString: process.env.'https://fast-ocean-19609.herokuapp.com/',
-//   ssl: true,
-// });
-//
-// client.connect();
-//
-// client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-//   if (err) throw err;
-//   for (let row of res.rows) {
-//     console.log(JSON.stringify(row));
-//   }
-//   client.end();
-// });
 /************
  * DATABASE *
  ************/
-
-//require models TC
 var db = require('./models');
 
 /**********
  * ROUTES *
  **********/
- /*
-  * HTML Endpoints
-  */
 var index = require('./routes/index');
 var userProfile = require('./routes/userProfile');
 var art = require('./routes/arts');
@@ -66,9 +42,6 @@ app.use('/login', login);
 /*
  * JSON API Endpoints
  */
-
-// request /api endpoint from client using get, on success execute api_index function
-   // that responds to client with json
 app.get('/api', function api_index (req, res){
   res.json({
     message: "Welcome to Austin Art!",
@@ -80,37 +53,29 @@ app.get('/api', function api_index (req, res){
   });
 });
 
-//create a new route for /api/favorites 1
-// request /api/favorites endpoint from client using get, on success execute favoritesUser function
-  // find and respond with all favorites in Favorite db
-    // since API route send JSON
 app.get('/api/favorites', function favoritesUser(req, res) {
-  console.log('hi');
-  // sanity check
   db.Favorite.find({}, function(err, favorites) {
     res.json(favorites);
   });
 });
 
-// request /api/favorites/:id endpoint from client using get, on success execute favoriteShow function
-  // log requested favorite's id
-  // find one favorite from Favorite db using favorite id from request, on success call function that
-    // respond with json of favorite
-app.get('/api/favorites/:id', function favoriteShow(req, res) {
-  console.log('requested favorite id=', req.params.id);
+//RENDER ART FAVORITE
+app.get('/api/art/favorites/:id', function artfavoriteShow(req, res) {
+  console.log('requested art favorite id=', req.params.id);
   db.Favorite.findOne({_id: req.params.id}, function(err, favorite) {
     res.json(favorite);
   });
 });
 
-app.get('/api/user/favorites/:id', function favoriteShow(req, res) {
-  console.log('requested favorite id=', req.params.id);
+//RENDER USER FAVORITE
+app.get('/api/user/favorites/:id', function userfavoriteShow(req, res) {
+  console.log('requested user favorite id=', req.params.id);
   db.Favorite.findOne({_id: req.params.id}, function(err, favorite) {
-    console.log('found');
     res.json(favorite);
   });
 });
 
+//
 app.post('/api/user/favorites/:id', function favoriteAdd(req, res) {
   console.log('adding id: ', req.params.id);
   db.Favorite.findOne({_id: req.params.id},
@@ -118,15 +83,7 @@ app.post('/api/user/favorites/:id', function favoriteAdd(req, res) {
       res.json(favorite);
   });
 });
-// send /api/favorites to client using post, on success execute favoritesCreate function S2S3 TC
-//log and object containing parsed text from /api/favorites body
-  // split the data in req.body.genres field at comma, map into new genres array, and remove trailing space using .trim S2S4
-  // set /api/favorites body data to genres array
-  //connect app.post route to favorite db S2S5
-    // create record in favorite database that has attributes of req.body
-      // logs error if err occurs
-      // logs new favorite if no eror
-      // respond with new favorite
+
 app.post('/api/favorites', function favoriteCreate(req, res) {
   console.log('body', req.body);
   var genres = req.body.genres.split(',').map(function(item) { return item.trim(); } );
@@ -139,12 +96,6 @@ app.post('/api/favorites', function favoriteCreate(req, res) {
 });
 
 //DELETE FAVORITE
-// send request to /api/favorites/:id to , on success run deleteFavorite function S4S2 TC
-  // log deleting request id
-  // remove specific favorite fron favorite db using id
-    // if err log error
-    // else log removal of id successful
-    // send 200 status code to say everything is a-OK
 app.delete('/api/favorites/:id', function deleteFavorite(req, res) {
   console.log('deleting id: ', req.params.id);
   db.Favorite.remove({_id: req.params.id}, function(err) {
@@ -153,6 +104,7 @@ app.delete('/api/favorites/:id', function deleteFavorite(req, res) {
     res.status(200).send();
   });
 });
+
 /**********
  * Oauth *
  **********/

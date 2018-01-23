@@ -1,16 +1,11 @@
 //RENDER ALL FAVORITES
-//use ajax to get the favorites && Render them on the page
-//use ajax $.get to get all favorites from server
-// on success render each favorite for all favorites
 $(document).ready(function() {
   console.log('frontend.js loaded!');
   $.get('/api/favorites').success(function (favorites) {
     favorites.forEach(function(favorite) {
       renderArtFavorite(favorite);
       renderUserFavorite(favorite);
-      console.log('hi');
     });
-
   });
 });
 
@@ -47,72 +42,48 @@ $('#aboutButton').click(function() {
   //   $(this).trigger("reset");
   // });
 
-
+//ADD FAVORITE
 $('.addDeath').on('click', handleAddDeathClick);
 
-
-// handleNewSongSubmit function S3S5 TC
-  // get song modal's album-id data and store in albumId variable
-  // get value from songName input field and store in songName variable
-  //get value from trackNumber input field and store in trackNumber variable
-  //formData object containing S3S5 TC
-    // songName input data
-    // trackNumber input data
 function handleAddDeathClick(e) {
-  console.log('hello');
-  // var favoriteId = $(this).parents('.favorite').data('favorite-id');
   console.log('someone wants to add favorite id=' + this.id );
-  // };
-  //   //use ajax $.post to send request to postUrl, send formData with request S3S5 TC
-  //     // if succesfull call function to
-  //       // log song
+
   $.get('/api/user/favorites/' + this.id).success(function(favorite) {
     console.log('got');
-//         //on success render a replacement
     renderUserFavorite(favorite);
 
     $.post('/api/user/favorites/' + this.id)
       .success(function(favorite) {
         console.log('favorite', favorite);
-  //       //use ajax $.get to request specific album by id from server
+    });
   });
-      });
-  }
+}
 
 // DELETE
-  // call handleDeleteFavoriteClick function when delete-favorite modal button is clicked
-    $('#userFavorites').on('click', '.delete-favorite', handleDeleteFavoriteClick);
+$('#userFavorites').on('click', '.delete-favorite', handleDeleteFavoriteClick);
 
-  // handleDeleteFavoriteClick function
-    // get current favorite's favorite-id data and store in favoriteId variable
-    // log someone wants to delete favorite  and favoriteId
-    // get value from songName input field and store in songName variable
-    //use $.ajax to send a
-      //DELETE request to /api/favorites/:favorite_id
-      // on success call function
-        // log that favorite has been deleted
-        // select favorite using using data-favorite-id and favoriteId and remove
-  function handleDeleteFavoriteClick(e) {
+function handleDeleteFavoriteClick(e) {
     var favoriteId = $(this).parents('.favorite').data('favorite-id');
-    console.log('someone wants to delete favorite id=' + favoriteId );
+      console.log('someone wants to delete favorite id=' + favoriteId );
+
     $.ajax({
       method: 'DELETE',
       url: ('/api/favorites/' + favoriteId),
-      success: function() {
-        console.log("He's dead Jim");
-        $('[data-favorite-id='+ favoriteId + ']').remove();
-      }
-    });
-  }
+        success: function() {
+          console.log("Deleted");
+          $('[data-favorite-id='+ favoriteId + ']').remove();
+        }
+      });
+}
 
-// accepts an favorite id (mongo id) and return the row in which that favorite exists
+// GET ROW 
 function getFavoriteRowById(id) {
   return $('[data-favorite-id=' + id + ']');
 }
 
-// GENERATE HTML for a user Favorite row
-  function generateUserFavoriteHtml(favorite) {
-    var favoriteUserHtml =
+// GENERATE USER FAVORITE HTML
+function generateUserFavoriteHtml(favorite) {
+  var favoriteUserHtml =
     "        <!-- one favorite -->" +
                 // each favorite has data-favorite-id attribute that's value is favorite._id
       "        <div class='row favorite' data-favorite-id='" + favorite._id + "'>" +
@@ -134,28 +105,25 @@ function getFavoriteRowById(id) {
       "                        <h4 class='inline-header'>Address:</h4>" +
       "                        <span class='address'>" + favorite.address + "</span>" +
       "                      </li>" +
-    "</ul>" +
-"                  </div>" +
-"                </div>" +
-"                <!-- end of favorite internal row -->" +
-
-"              </div>" + // end of panel-body
-
-"              <div class='panel-footer'>" +
-                // Add a new button in panel-footer to delete favorite S4S1 TC
-"                <button class='btn btn-danger delete-favorite'>Delete Favorite</button>" +
-"              </div>" +
-
-"            </div>" +
-"          </div>" +
-"          <!-- end one favorite -->";
-return favoriteUserHtml;
+      "</ul>" +
+      "                  </div>" +
+      "                </div>" +
+      "                <!-- end of favorite internal row -->" +
+      "              </div>" + // end of panel-body
+      "              <div class='panel-footer'>" +
+                    // delete button
+      "                <button class='btn btn-danger delete-favorite'>Delete Favorite</button>" +
+      "              </div>" +
+      "            </div>" +
+      "          </div>" +
+      "          <!-- end one favorite -->";
+      return favoriteUserHtml;
 }
 
-// GENERATE HTML for a art page Favorite row
-  function generateArtFavoriteHtml(favorite) {
+// GENERATE ART PAGE FAVORITE HTML
+function generateArtFavoriteHtml(favorite) {
     var favoriteArtHtml =
-    "        <!-- one favorite -->" +
+      "        <!-- one favorite -->" +
                 // each favorite has data-favorite-id attribute that's value is favorite._id
       "        <div class='row favorite' data-favorite-id='" + favorite._id + "'>" +
       "          <div class='col-md-10 col-md-offset-1'>" +
@@ -176,39 +144,27 @@ return favoriteUserHtml;
       "                        <h4 class='inline-header'>Address:</h4>" +
       "                        <span class='address'>" + favorite.address + "</span>" +
       "                      </li>" +
-    "</ul>" +
-"                  </div>" +
-"                </div>" +
-"                <!-- end of favorite internal row -->" +
-
-"              </div>" + // end of panel-body
-"            </div>" +
-"          </div>" +
-"          <!-- end one favorite -->";
-return favoriteArtHtml;
+      "</ul>" +
+      "                  </div>" +
+      "                </div>" +
+      "                <!-- end of favorite internal row -->" +
+      "              </div>" + // end of panel-body
+      "            </div>" +
+      "          </div>" +
+      "          <!-- end one favorite -->";
+      return favoriteArtHtml;
 }
 
-//SAVE AND EDIT BUTTONS
-// Add a new button in panel-footer to edit favorite S5S1 TC
-// "                <button class='btn btn-info edit-favorite'>Edit Favorite</button>" +
-// "                <button class='btn btn-success put-favorite default-hidden'>Save Changes</button>"
-
-// RENDER ONE user favorite
-// this function takes a single favorite and renders it to the page
-// edit the function renderFavorite to display one Favorite on the page.
+// RENDER ONE USER FAVORITE
 function renderUserFavorite(favorite) {
     var html = generateUserFavoriteHtml(favorite);
-    console.log('rendering favorite:', favorite);
-
+    console.log('rendering user favorite:', favorite);
     $('#userFavorites').prepend(html);
 }
 
-// RENDER ONE art favorite
-// this function takes a single favorite and renders it to the page
-// edit the function renderFavorite to display one Favorite on the page.
+// RENDER ONE ART FAVORITE
 function renderArtFavorite(favorite) {
     var html = generateArtFavoriteHtml(favorite);
-    console.log('rendering favorite:', favorite);
-
+    console.log('rendering art favorite:', favorite);
     $('#artFavorites').prepend(html);
 }

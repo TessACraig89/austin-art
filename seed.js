@@ -1,8 +1,6 @@
 var db = require("./models");
 
 var favoriteList = [];
-
-//push art objects into array
 favoriteList.push({
     title: 'Band Together',
     image: '/images/bangTogether.jpg',
@@ -37,5 +35,34 @@ db.Favorite.remove({}, function(err, favorites){
     console.log("created", favorites.length, "favorites");
     process.exit();
   });
+});
 
+var usersList = [];
+usersList.push({
+  first_name: 'Jessica',
+  last_name: 'Johnson',
+  username: 'Jessica_Johnson',
+  address: 'jessica.johnson@gmail.com'
+});
+usersList.push({
+  first_name: 'Kim',
+  last_name: 'Chi',
+  username: 'Kim_Chi',
+  address: 'kim.chi@gmail.com'
+});
+usersList.push({
+  first_name: 'Les',
+  last_name: 'Lee',
+  username: 'Les_Lee',
+  address: 'les.lee@gmail.com'
+});
+
+db.Users.remove({}, function(err, users){
+
+  db.Users.create(usersList, function(err, users){
+    if (err) { return console.log('ERROR', err); }
+    console.log("all users:", users);
+    console.log("created", users.length, "users");
+    process.exit();
+  });
 });

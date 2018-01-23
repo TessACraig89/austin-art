@@ -25,13 +25,13 @@ img {
 
 }
 
-#headerTitle {
+.headerTitle {
   font-size: 80px;
   position: relative;
   bottom: 60px;
 }
 
-#headerSub {
+.headerSub {
   font-size: 30px;
   font-style: italic;
   position: relative;
@@ -39,7 +39,7 @@ img {
 }
 
 
-#nav {
+.nav {
   display: flex;
   justify-content: space-evenly;
   position: relative;

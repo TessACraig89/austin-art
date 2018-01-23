@@ -1,12 +1,10 @@
-// require mongoose
 var mongoose = require("mongoose");
-
-//connect mongoose
 mongoose.connect("mongodb://localhost/austin-art");
 
-//require favorite model
+//require models
 var Favorite = require('./favorites');
+var Users = require('./users');
 
-
-//export favorite model
+//export models
 module.exports.Favorite = Favorite;
+module.exports.Users = Users;
