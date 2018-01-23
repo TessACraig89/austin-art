@@ -23,6 +23,11 @@ favoriteList.push({
     image: '/images/tillDeath.jpg',
     address: 'E. 7th & Waller'
 });
+favoriteList.push({
+    title: 'Hi, How Are You?',
+    image: '/images/hi.jpg',
+    address: '21st & Guadalupe'
+});
 
 db.Favorite.remove({}, function(err, favorites){
 
