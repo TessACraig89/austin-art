@@ -122,7 +122,7 @@ function getFavoriteRowById(id) {
       "              <!-- begin favorite internal row -->" +
       "                <div class='row'>" +
       "                  <div class='col-md-3 col-xs-12 thumbnail favorite-art'>" +
-      "                     <img src='" + "http://placehold.it/400x400'" +  " alt='favorite image'>" +
+      "                     <img src=" + favorite.image +  " alt='favorite image'>" +
       "                  </div>" +
       "                  <div class='col-md-9 col-xs-12'>" +
       "                    <ul class='list-group'>" +
@@ -164,7 +164,7 @@ return favoriteUserHtml;
       "              <!-- begin favorite internal row -->" +
       "                <div class='row'>" +
       "                  <div class='col-md-3 col-xs-12 thumbnail favorite-art'>" +
-      "                     <img src='" + "http://placehold.it/400x400'" +  " alt='favorite image'>" +
+      "                     <img src=" + favorite.image +  " alt='favorite image'>" +
       "                  </div>" +
       "                  <div class='col-md-9 col-xs-12'>" +
       "                    <ul class='list-group'>" +
