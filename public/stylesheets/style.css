@@ -80,12 +80,73 @@ img {
   text-align: center;
 }
 
-.aboutTitle {
+.title {
   font-size: 50px;
-
 }
 
 .aboutP {
   font-size: 20px;
   margin: 20px;
+}
+
+.artContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  top: 60px;
+}
+
+#artFavorites {
+  position: relative;
+  top: 20px;
+}
+
+.panel-body {
+  border: black solid 7px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.panel-default {
+  border-color: white;
+}
+
+.thumbnail {
+  border-color: blue;
+}
+
+.list-group {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-group-item {
+  border: solid 5px purple;
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.col-xs-12 {
+  border: blue 5px solid;
+}
+
+#address-and-title {
+  border: red 5px solid;
+  width: 50%;
+  position: relative;
+  left: 100px;
+}
+
+.inline-header {
+  font-size: 25px;
+}
+
+.favorite-title {
+  font-size: 25px;
 }

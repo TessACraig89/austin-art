@@ -124,7 +124,7 @@ function getFavoriteRowById(id) {
       "                  <div class='col-md-3 col-xs-12 thumbnail favorite-art'>" +
       "                     <img src=" + favorite.image +  " alt='favorite image'>" +
       "                  </div>" +
-      "                  <div class='col-md-9 col-xs-12'>" +
+      "                  <div id='address-and-title' class='col-md-9 col-xs-12'>" +
       "                    <ul class='list-group'>" +
       "                      <li class='list-group-item'>" +
       "                        <h4 class='inline-header'>Title:</h4>" +
@@ -166,7 +166,7 @@ return favoriteUserHtml;
       "                  <div class='col-md-3 col-xs-12 thumbnail favorite-art'>" +
       "                     <img src=" + favorite.image +  " alt='favorite image'>" +
       "                  </div>" +
-      "                  <div class='col-md-9 col-xs-12'>" +
+      "                  <div id='address-and-title' class='col-md-9 col-xs-12'>" +
       "                    <ul class='list-group'>" +
       "                      <li class='list-group-item'>" +
       "                        <h4 class='inline-header'>Title:</h4>" +
