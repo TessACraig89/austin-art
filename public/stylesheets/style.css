@@ -17,34 +17,50 @@ img {
   background-color: #5bbbd8;
   text-align: center;
   width: 100%;
-  height: 250px;
+  height: 200px;
+  position: relative;
+  bottom: 30px;
   border-radius: 20px;
 
+}
+
+#headerSub {
+  font-size: 30px;
+  font-style: italic;
+  position: relative;
+  bottom: 40px;
+}
+
+#aboutCollage {
+  width: 70%;
+  height: 400px;
+}
+
+
+#nav {
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+  top: 20px;
 }
 
 .navButton {
   border-radius: 50px;
   font-size: 30px;
-  position: relative;
   width: 150px;
-  bottom: 25px;
   height: 60px;
   border-width: 5px;
   border-color: black;
   text-align: center;
 }
 
+.navButton:hover {
+  background-color: #a289ed;
+}
+
 #headerTitle {
   font-size: 80px;
   position: relative;
   bottom: 40px;
-}
 
-#aboutButton {
-  margin-left: 70px;
-  margin-right: 70px;
-}
-
-#artTitle {
-  p
 }
