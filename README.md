@@ -3,7 +3,7 @@
 To keep up with my progress check out [My Trello Board](https://trello.com/b/ei25yci7/austin-wall-art)!
 
 ## Entity Relationship Diagram
-![Entity Relationship Diagram](images/ERD.png)
+![Entity Relationship Diagram](public/images/ERD.png)
 
 ## Routes Layout
 
