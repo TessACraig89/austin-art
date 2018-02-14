@@ -3,7 +3,6 @@
 Web application used to browse the street art of Austin, each piece of art has a title, picture, and address.
 
 ## Downloading Instructions
-Go to this link to see the app deployed: ([link](#))
 
 To run it locally,
 1. Clone this repository
