@@ -13,10 +13,10 @@ To run it locally,
 ## Technologies
 - [Node.js](http://nodejs.org) - A server side JavaScript tool and the accompanying package manager
 - [Express.js](https://github.com/expressjs/express) - A back-end web framework for [Node.js](http://nodejs.org)
-- jQuery - A JavaScript library that allows for cleaner, less verbose code
-- EJS - Embedded JavaScript allows JS to be incorporated in HTML codes
-- OAuth - Enables authorization of user login by 3rd party sources
-- MongoDB/Mongoose - NoSQL database used to create and store data
+- [jQuery](https://jquery.com/) - A JavaScript library that allows for cleaner, less verbose code
+- [EJS](http://ejs.co/) - Embedded JavaScript allows JS to be incorporated in HTML codes
+- [OAuth](https://oauth.net/) - Enables authorization of user login by 3rd party sources
+- [MongoDB](https://www.mongodb.com/)/[Mongoose](http://mongoosejs.com/) - NoSQL database used to create and store data
 
 ## Minimum Viable Product
 
@@ -61,3 +61,5 @@ The Minimum Viable Product version of the Austin Art web app is a much simplifie
 
 ## References
 -  [Google API Services](https://console.developers.google.com/apis/dashboard?project=austin-art&duration=PT1H)
+
+> To learn more about the developer of Psyche Tracker, Tess Craig, visit her [Linkedin](https://www.linkedin.com/in/tessashleycraig/) and view her other [Github](https://github.com/TessACraig89) projects.
