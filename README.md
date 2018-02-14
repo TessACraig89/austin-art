@@ -60,4 +60,4 @@ The Minimum Viable Product version of the Austin Art web app is a much simplifie
 ![Map Page](public/images/map.png)
 
 ## References
-1. Google API Services [link](https://console.developers.google.com/apis/dashboard?project=austin-art&duration=PT1H)
+-  [Google API Services](https://console.developers.google.com/apis/dashboard?project=austin-art&duration=PT1H)
