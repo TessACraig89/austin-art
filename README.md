@@ -4,13 +4,6 @@ Web application used to browse the street art of Austin, each piece of art has a
 
 > The Austin Street Art web app is currently in production. Once complete, a demo link will be put here. Until then, please follow development on [Trello](https://trello.com/b/ei25yci7/austin-wall-art-project).
 
-<!-- ## Downloading Instructions
-
-To run it locally,
-1. Clone this repository
-1. `npm install`
-1. `npm start`
-1. Direct the browser to `localhost:3000/` -->
 
 ## Technologies
 - [Node.js](http://nodejs.org) - A server side JavaScript tool and the accompanying package manager
@@ -61,3 +54,11 @@ The Minimum Viable Product version of the Austin Art web app is a much simplifie
 ## Work In Progress
 
 > To learn more about the developer of Psyche Tracker, Tess Craig, visit her [Linkedin](https://www.linkedin.com/in/tessashleycraig/) and view her other [Github](https://github.com/TessACraig89) projects.
+
+<!-- ## Downloading Instructions
+
+To run it locally,
+1. Clone this repository
+1. `npm install`
+1. `npm start`
+1. Direct the browser to `localhost:3000/` -->
