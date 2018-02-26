@@ -2,13 +2,15 @@
 
 Web application used to browse the street art of Austin, each piece of art has a title, picture, and address.
 
-## Downloading Instructions
+> The Austin Street Art web app is currently in production. Once complete, a demo link will be put here. Until then, please follow development on [Trello](https://trello.com/b/ei25yci7/austin-wall-art-project).
+
+<!-- ## Downloading Instructions
 
 To run it locally,
 1. Clone this repository
 1. `npm install`
 1. `npm start`
-1. Direct the browser to `localhost:3000/`
+1. Direct the browser to `localhost:3000/` -->
 
 ## Technologies
 - [Node.js](http://nodejs.org) - A server side JavaScript tool and the accompanying package manager
@@ -24,7 +26,7 @@ The Minimum Viable Product version of the Austin Art web app is a much simplifie
 
 
 ### Entity Relationship Diagram
-![Entity Relationship Diagram](public/images/ERD.png)
+![Entity Relationship Diagram](public/images/erd.png)
 
 ### Wireframes
 
@@ -43,23 +45,19 @@ The Minimum Viable Product version of the Austin Art web app is a much simplifie
 ![Art Page](public/images/art.png)
 
 
-#### User Profile Page
+#### User Profile
 
-![User Profile Page](public/images/user.png)
+![User Profile Page](public/images/profile.png)
 
 
-#### Editing User Profile Page
+#### Editing Post
 
-![Editing User Profile Page](public/images/user-edit.png)
+![Editing User Post](public/images/edit-post.png)
 
+#### New Post
+
+![New Post](public/images/new-post.png)
 
 ## Work In Progress
-
-#### Map Page
-
-![Map Page](public/images/map.png)
-
-## References
--  [Google API Services](https://console.developers.google.com/apis/dashboard?project=austin-art&duration=PT1H)
 
 > To learn more about the developer of Psyche Tracker, Tess Craig, visit her [Linkedin](https://www.linkedin.com/in/tessashleycraig/) and view her other [Github](https://github.com/TessACraig89) projects.
