@@ -5,7 +5,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+///// Mongooose
 var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/austinArt');
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -117,7 +119,6 @@ app.use(expressSession({secret: 'mySecretKey'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-mongoose.connect('mongodb://localhost:27017/austin-art');
 
 const googleClientKey = ENV.GOOGLE_CLIENT_ID;
 const googleClientSecret = ENV.GOOGLE_CLIENT_SECRET;
